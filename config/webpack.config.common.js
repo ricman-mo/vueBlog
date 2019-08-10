@@ -54,11 +54,25 @@ const webpackConfig = {
             },
             {
                 test: /\.md$/,
-                loader: 'vue-markdown-loader'
+                use: [{
+                        loader: 'vue-loader'
+                    },
+                    {
+                        loader: 'vue-markdown-loader/lib/markdown-compiler',
+                        options: {
+                            raw: true
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
-                loader: 'file-loader'
+                loader: 'file-loader',
+            }, //
+            {
+                test: /\.(|png|jpg|gif)(\?\S*)?$/,
+                loader: 'file-loader',
+                include: [helpers.root('src')]
             }
         ]
     },

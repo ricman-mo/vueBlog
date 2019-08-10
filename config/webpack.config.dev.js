@@ -9,7 +9,7 @@ const environment = require('./env/dev.env');
 
 const webpackConfig = merge(commonConfig, {
     mode: 'development',
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     output: {
         path: helpers.root('dist'),
         publicPath: '/',
@@ -28,7 +28,8 @@ const webpackConfig = merge(commonConfig, {
         new FriendlyErrorsPlugin()
     ],
     devServer: {
-        compress: true,
+        contentBase: "/",
+        compress: false,
         historyApiFallback: true,
         hot: true,
         open: true,
@@ -36,6 +37,17 @@ const webpackConfig = merge(commonConfig, {
         port: 18000,
         stats: {
             normal: true
+        },
+        proxy: {
+            '/api/**': {
+                target: 'http://localhost:18562',
+                changeOrigin: true, // target是域名的话，需要这个参数，
+                secure: false, // 设置支持https协议的代理
+                headers: {
+                    Connection: 'keep-alive'
+                },
+                logLevel: 'debug'
+            }
         }
     }
 });
