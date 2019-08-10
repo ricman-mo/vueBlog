@@ -5,6 +5,12 @@
     </component>
   </div>
 </template>
+<style>
+ .app-boby {
+   display: flex;
+   justify-content: center;
+ }
+</style>
 
 <script>
 const default_layout = "default";

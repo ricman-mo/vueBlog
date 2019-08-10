@@ -1,31 +1,37 @@
+
+<template>
+  <div class="body_container">
+    <header-bar />
+    <div class="b-container">
+      <b-row>
+        <b-col cols="9">
+          <slot />
+        </b-col>
+        <b-col cols="3">
+          <side-bar />
+        </b-col>
+      </b-row>
+    </div>
+
+    <footer-bar />
+  </div>
+</template>
+
+<style>
+ .body_container {
+   width: 1140px;
+ }
+</style>
+
 <script>
 import FooterBar from "@/components/layouts/footer";
 import HeaderBar from "@/components/layouts/header";
 import SideBar from "@/components/layouts/sideBar";
 export default {
   components: {
-     HeaderBar,
-     SideBar,
-     FooterBar
-    }
-  };
+    HeaderBar,
+    SideBar,
+    FooterBar
+  }
+};
 </script>
-
-<template>
-  <div>
-   <header-bar />
-    <div class="container">
-      <div class="columns">
-        <div class="column is-8">
-          <slot />
-        </div>
-
-        <div class="column is-4">
-          <side-bar />
-        </div>
-      </div>
-    </div>
-
-    <footer-bar />
-  </div>
-</template>
